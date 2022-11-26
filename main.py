@@ -8,4 +8,4 @@ app = discohook.Client(
     express_debug=True,
 )
 
-app.load_cog("src.cogs.test")
+app.load_cog("cogs.test")
