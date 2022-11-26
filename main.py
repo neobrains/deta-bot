@@ -7,3 +7,5 @@ app = discohook.Client(
     token=os.getenv("DISCORD_TOKEN"),
     express_debug=True,
 )
+
+app.load_cog("src.cogs.test")
