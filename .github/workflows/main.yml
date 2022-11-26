@@ -8,6 +8,6 @@ jobs:
       - uses: actions/checkout@v2 
       - uses: BogDAAAMN/deta-deploy-action@v1.0.1
         with:
-          deta-access-token: ${{ secrets.DETA_TOKEN }} #Deta access token https://docs.deta.sh/docs/cli/auth
+          deta-access-token: ${{ secrets.DETA_TOKEN }}
           deta-name: 'deta-bot'
           deta-project: 'default' 
