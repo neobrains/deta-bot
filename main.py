@@ -1,7 +1,7 @@
 import os
-import discohook.discohook as discohook
+import discohook.discohook as dh
 
-app = discohook.Client(
+app = dh.Client(
     application_id=int(os.getenv("APPLICATION_ID")),
     public_key=os.getenv("PUBLIC_KEY"),
     token=os.getenv("DISCORD_TOKEN"),
