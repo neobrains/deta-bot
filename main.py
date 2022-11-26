@@ -1,5 +1,5 @@
 import os
-import discohook.discohook as discohook
+import discohook
 
 app = discohook.Client(
     application_id=int(os.getenv("APPLICATION_ID")),
