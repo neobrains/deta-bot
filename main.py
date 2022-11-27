@@ -9,3 +9,4 @@ app = discohook.Client(
 )
 
 app.load_cog("cogs.test")
+app.load_cog("cogs.docs")
