@@ -1,47 +1,59 @@
 import discohook.discohook as discohook
-from extras.func import get_docs
+from algoliasearch.search_client import SearchClient
+
+url = discohook.Button(
+    "Deta docs",
+    url="https://docs.deta.sh/docs/home",
+    emoji=discohook.emoji.PartialEmoji(name="deta", id="1014580844813352980"),
+    style=discohook.ButtonStyle.link,
+)
+
+delete = discohook.Button(
+    "Delete",
+    style=discohook.ButtonStyle.red,
+)
+
+
+@delete.on_click
+async def delete_callback(inter: discohook.Interaction):
+    return await inter.component.delete_original()
+
+
+def get_data(index, query: str, results_per_page: int = 10, page_num: int = 0):
+    response = index.search(query, {"hitsPerPage": results_per_page, "page": page_num})
+    return response["hits"]
 
 
 class Docs(discohook.Cog):
-    @discohook.Cog.command(name="docs", description="Search deta.sh docs")
-    async def docs(self, magic: discohook.Interaction):
-        pass
-
-    @docs.subcommand(
-        name="base",
-        description="Deta base docs",
+    @discohook.Cog.command(
+        name="docs",
+        description="Search deta.sh docs",
         options=[
             discohook.StringOption(
-                name="topic",
-                description="Base topic",
-                required=True,
-                choices=[
-                    discohook.Choice(name="About", value="about"),
-                    discohook.Choice(name="SDK", value="sdk"),
-                    discohook.Choice(name="Async SDK", value="async_sdk"),
-                    discohook.Choice(name="HTTP API", value="HTTP"),
-                    discohook.Choice(name="Queries", value="queries"),
-                    discohook.Choice(name="Base UI", value="base_ui"),
-                    discohook.Choice(name="Expiring Items", value="expiring_items"),
-                    discohook.Choice(name="Node.js Tutorial", value="node_tutorial"),
-                    discohook.Choice(name="Python Tutorial", value="py_tutorial"),
-                ],
-            ),
-            discohook.StringOption(
-                name="query", description="Query base topic", required=True
-            ),
+                name="query", description="Search query", required=True
+            )
         ],
     )
-    async def deta_base(self, magic: discohook.Interaction, topic: str, query: str):
+    async def docs(self, magic: discohook.Interaction, *, query: str):
+        c = discohook.View()
+        c.add_button_row(url, delete)
+        client = SearchClient.create("BH4D9OD16A", "4b3aaec0466a855ce8ec420d3baedde3")
+        index = client.init_index("deta")
+        dsc = ""
+        for i in get_data(index, query):
+            name = ""
+            for a in range(6):
+                if i["hierarchy"][f"lvl{a}"] != None:
+                    name += (
+                        f"{i['hierarchy'][f'lvl{a}']}".replace("&#x27;", "'") + " > "
+                    )
+            dsc += f"> [`{name}`]({i['url']}) \n ** ** \n"
         e = discohook.Embed(
-            title=f"{topic.capitalize()}",
-            url=f"https://docs.deta.sh/docs/base/{topic}/#{query}",
-            description=get_docs(section="base", doc_page=topic, doc_query=query),
+            description=dsc,
             color=0xEE4196,
         )
-        return await magic.command.response(
-            embed=e,
-        )
+        e.author(name=f"Search results")
+        await magic.command.response(embed=e, components=c)
 
 
 def setup(client: discohook.Client):

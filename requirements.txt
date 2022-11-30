@@ -1,4 +1,6 @@
+algoliasearch
 requests
 fastapi
 aiohttp
 PyNaCl
+deta
