@@ -10,6 +10,7 @@ def get_data(query: str, results_per_page: int = 10, page_num: int = 0):
 
 
 class Docs(discohook.Cog):
+
     @discohook.Cog.command(
         name="docs",
         description="Search deta.sh docs",
@@ -42,10 +43,11 @@ class Docs(discohook.Cog):
     async def autocomplete(magic: discohook.Interaction, name: str, value: str):
         dsc = []
         for i in get_data(value):
-            n = ""
-            for a in range(6):
-                if i["hierarchy"][f"lvl{a}"] != None:
-                    n += " > " + f"{i['hierarchy'][f'lvl{a}']}".replace("&#x27;", "'")
+            fragments = [
+                f"{i['hierarchy'][f'lvl{a}']}".replace("&#x27;", "'")
+                for a in range(6)
+            ]
+            n = " > ".join(fragments)
             dsc.append({"name": n, "url": i["url"]})
         await magic.send_autocomplete(
             [discohook.Choice(name=r["name"], value=r["url"]) for r in dsc]
