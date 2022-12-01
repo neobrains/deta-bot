@@ -12,24 +12,24 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - name: Install Deta CLI & set Deta Access Token as a env var
+      - name: Install Deta CLI
         shell: bash
         run: curl -fsSL https://get.deta.dev/cli.sh | sh
-             echo '~/.deta/bin/' >> $GITHUB_PATH
-             echo "DETA_ACCESS_TOKEN=${{ secrets.DETA_ACCESS_TOKEN }}" >> $GITHUB_ENV
 
       - name: Clone Deta Micro
         shell: bash
         run: |
+          export DETA_ACCESS_TOKEN=${{ inputs.deta-access-token }}
           mkdir -p tmp/deta-bot
-          deta clone --name deta-bot --project default tmp/deta-bot
+          ~/.deta/bin/deta clone --name deta-bot --project default tmp/deta-bot
           cp -r tmp/deta-bot/.deta .
           rm -rf tmp
 
       - name: Deploy to Deta Micro
         shell: bash
         run: |
-          deta deploy
+          export DETA_ACCESS_TOKEN=${{ inputs.deta-access-token }}
+          ~/.deta/bin/deta deploy
 
       - name: Ping the endpoint
         shell: bash
