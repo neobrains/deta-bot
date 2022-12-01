@@ -7,5 +7,4 @@ app = discohook.Client(
     token=os.getenv("DISCORD_TOKEN"),
     log_channel_id=902228501120290866,
 )
-app.load_cogs("cogs.tags", "cogs.docs", "cogs.rescue")
-
+app.load_cogs("cogs.tags", "cogs.docs", "cogs.rescue", "cogs.test")
