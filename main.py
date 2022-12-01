@@ -9,4 +9,3 @@ app = discohook.Client(
 )
 
 app.load_cogs("cogs.tags", "cogs.docs", "cogs.rescue")
-app.sync()
