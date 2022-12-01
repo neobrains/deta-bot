@@ -45,7 +45,7 @@ class Docs(discohook.Cog):
         for i in get_data(value):
             fragments = [
                 f"{i['hierarchy'][f'lvl{a}']}".replace("&#x27;", "'")
-                for a in range(6)
+                for a in range(6) if i['hierarchy'][f'lvl{a}'] is not None
             ]
             n = " > ".join(fragments)
             dsc.append({"name": n, "url": i["url"]})
