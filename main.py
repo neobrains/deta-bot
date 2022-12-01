@@ -8,3 +8,4 @@ app = discohook.Client(
     log_channel_id=902228501120290866,
 )
 app.load_cogs("cogs.tags", "cogs.docs", "cogs.rescue")
+
