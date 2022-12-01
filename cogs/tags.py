@@ -29,6 +29,10 @@ class Tags(discohook.Cog):
     async def tag(self, magic: discohook.Interaction):
         pass
 
+    @tag.subcommand(name="test", description="Test command")
+    async def tag_test(self, magic: discohook.Interaction):
+        await magic.command.response("Test!")
+
     @tag.subcommand(name="create", description="Create tag")
     async def tag_create(self, magic: discohook.Interaction):
         await magic.send_modal(modal)
