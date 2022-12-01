@@ -1,4 +1,4 @@
-import discohook.discohook as discohook
+import discohook
 from algoliasearch.search_client import SearchClient
 
 
@@ -35,7 +35,7 @@ class Docs(discohook.Cog):
             description=f"> [`{query}`]({query})",
             color=0xEE4196,
         )
-        e.author(name="Query results")
+        e.author(name=f"{magic.author} picked", icon_url=magic.author.avatar_url)
         await magic.command.response(embed=e, components=c)
 
     @docs.autocomplete_callback

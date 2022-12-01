@@ -1,13 +1,14 @@
 import os
-import discohook.discohook as discohook
+import discohook
 
 app = discohook.Client(
     application_id=int(os.getenv("APPLICATION_ID")),
     public_key=os.getenv("PUBLIC_KEY"),
     token=os.getenv("DISCORD_TOKEN"),
-    express_debug=True,
+    log_channel_id=902228501120290866,
 )
 
-app.load_cog("cogs.test")
-app.load_cog("cogs.docs")
-app.load_cog("cogs.rescue")
+app.load_cogs("cogs.tags", "cogs.docs", "cogs.rescue")
+app.sync()
+
+#

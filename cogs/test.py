@@ -1,4 +1,4 @@
-import discohook.discohook as discohook
+import discohook
 
 
 class Test(discohook.Cog):

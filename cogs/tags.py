@@ -1,18 +1,14 @@
-import discohook.discohook as discohook
+import discohook
 
 
 class Tags(discohook.Cog):
-    @discohook.Cog.command(
-        name="tag",
-        description="Display tag",
-        options=[
-            discohook.StringOption(
-                name="name", description="The tag to retrieve", required=True
-            )
-        ],
-    )
-    async def tag(self, magic: discohook.Interaction, name):
-        await magic.command.response(name)
+    @discohook.Cog.command(name="tag", description="Tag system")
+    async def tag(self, magic: discohook.Interaction):
+        pass
+
+    @tag.subcommand(name="test", description="Test command")
+    async def tag_test(self, magic: discohook.Interaction):
+        await magic.command.response("Test!")
 
 
 def setup(client: discohook.Client):

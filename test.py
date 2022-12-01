@@ -1,0 +1,3 @@
+print(
+    "`How to ask for help:` \n > **1.** Make sure you have checked <#1022777815852130304> or the [github discussions](https://github.com/deta/docs/discussions) for your error \n > **2.** If you couldn\’t find it create a new post and either staff or a member of the server will come and help you asap! \n ** ** \n\n **Thigns to keep in mind**  \n ⬩ If your question doesn\’t get answered instantly don\’t start trying to make people look at it by posting in <#827546555669413919> \n ⬩ Provide code, if your code is too long paste it into a [codebin](https://codebin.deta.dev/) and send the link \n ⬩ Describe your issue as much as possible \n ⬩ Provide screenshots \n ⬩ Use the correct tags"
+)
