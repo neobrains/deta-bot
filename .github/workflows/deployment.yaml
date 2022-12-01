@@ -36,4 +36,4 @@ jobs:
         shell: bash
         run: |
           curl -X 'GET' \
-            'https://deta-server.deta.dev/' \
+            'https://deta-server.deta.dev/interactions' \
