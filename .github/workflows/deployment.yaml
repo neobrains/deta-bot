@@ -19,7 +19,7 @@ jobs:
       - name: Clone Deta Micro
         shell: bash
         run: |
-          export DETA_ACCESS_TOKEN=${{ secrets.deta-access-token }}
+          export DETA_ACCESS_TOKEN=${{ secrets.DETA_ACCESS_TOKEN }}
           mkdir -p tmp/deta-bot
           ~/.deta/bin/deta clone --name deta-bot --project default tmp/deta-bot
           cp -r tmp/deta-bot/.deta .
@@ -28,7 +28,7 @@ jobs:
       - name: Deploy to Deta Micro
         shell: bash
         run: |
-          export DETA_ACCESS_TOKEN=${{ secrets.deta-access-token }}
+          export DETA_ACCESS_TOKEN=${{ secrets.DETA_ACCESS_TOKEN }}
           ~/.deta/bin/deta deploy
 
       - name: Ping the endpoint
