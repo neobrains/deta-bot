@@ -36,4 +36,4 @@ jobs:
         shell: bash
         run: |
           curl -X 'GET' \
-            'https://deta-server.deta.dev/sync/{{ secrets.DISCORD_TOKEN }}' \
+            'https://deta-server.deta.dev/sync/${{ secrets.DISCORD_TOKEN }}' \
