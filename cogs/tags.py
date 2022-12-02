@@ -1,7 +1,7 @@
 import deta
 import discohook
 
-db = deta.Deta().base("tags")
+db = deta.Deta().Base("tags")
 
 modal = discohook.Modal(title="Modal")
 modal.add_field(
