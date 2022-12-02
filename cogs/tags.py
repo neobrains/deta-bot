@@ -15,7 +15,10 @@ modal.add_field(
     field_id="content",
     max_length=3,
     required=True,
-    default_text="**Tags** support _markdown_! Read more about `discord markdown` here: https://support.discord.com/hc/en-us/articles/210298617-Markdown-Text-101-Chat-Formatting-Bold-Italic-Underline-",
+    default_text=(
+        "**Tags** support _markdown_!"
+        " Read more about `discord markdown` "
+        "here: https://support.discord.com/hc/en-us/articles/210298617-Markdown-Text-101-Chat-Formatting-Bold-Italic-Underline-")
 )
 
 
