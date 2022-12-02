@@ -1,16 +1,18 @@
+import os
 import discohook
 from algoliasearch.search_client import SearchClient
 
 
 def get_data(query: str, results_per_page: int = 10, page_num: int = 0):
-    client = SearchClient.create("BH4D9OD16A", "4b3aaec0466a855ce8ec420d3baedde3")
+    client = SearchClient.create(
+        os.getenv("ALGOLIASEARCH_S"), os.getenv("ALGOLIASEARCH_L")
+    )
     index = client.init_index("deta")
     response = index.search(query, {"hitsPerPage": results_per_page, "page": page_num})
     return response["hits"]
 
 
 class Docs(discohook.Cog):
-
     @discohook.Cog.static_command(id="1046455160907501628")
     async def docs(self, magic: discohook.Interaction, *, query: str):
         url = discohook.Button(
@@ -25,7 +27,9 @@ class Docs(discohook.Cog):
             description=f"> [`{query}`]({query})",
             color=0xEE4196,
         )
-        e.author(name=f"{magic.author.username} picked", icon_url=magic.author.avatar_url())
+        e.author(
+            name=f"{magic.author.username} picked", icon_url=magic.author.avatar_url()
+        )
         await magic.command.response(embed=e, components=c)
 
     @docs.autocomplete_callback
@@ -34,7 +38,8 @@ class Docs(discohook.Cog):
         for i in get_data(value):
             fragments = [
                 f"{i['hierarchy'][f'lvl{a}']}".replace("&#x27;", "'")
-                for a in range(6) if i['hierarchy'][f'lvl{a}'] is not None
+                for a in range(6)
+                if i["hierarchy"][f"lvl{a}"] is not None
             ]
             n = " > ".join(fragments)
             dsc.append({"name": n, "url": i["url"]})
