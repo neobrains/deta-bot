@@ -6,6 +6,6 @@ app = discohook.Client(
     public_key=os.getenv("PUBLIC_KEY"),
     token=os.getenv("DISCORD_TOKEN"),
     log_channel_id=902228501120290866,
-    mode='static',
+    mode="static",
 )
-app.load_cogs("cogs.tags", "cogs.docs", "cogs.rescue", "cogs.test")
+app.load_cogs("cogs.docs", "cogs.rescue")
