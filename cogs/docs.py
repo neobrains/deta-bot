@@ -11,18 +11,7 @@ def get_data(query: str, results_per_page: int = 10, page_num: int = 0):
 
 class Docs(discohook.Cog):
 
-    @discohook.Cog.command(
-        name="docs",
-        description="Search deta.sh docs",
-        options=[
-            discohook.StringOption(
-                name="query",
-                description="Search query",
-                required=True,
-                auto_complete=True,
-            )
-        ],
-    )
+    @discohook.Cog.static_command(id="1046455160907501628")
     async def docs(self, magic: discohook.Interaction, *, query: str):
         url = discohook.Button(
             "Deta docs",

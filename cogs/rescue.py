@@ -13,10 +13,7 @@ async def delete_callback(inter: discohook.Interaction):
 
 
 class Help(discohook.Cog):
-    @discohook.Cog.command(
-        name="Help",
-        category=discohook.AppCmdType.message,
-    )
+    @discohook.Cog.static_command(id="1047301281619902464")
     async def rescue(self, magic: discohook.Interaction, message: dict):
         c = discohook.View()
         c.add_button_row(delete)

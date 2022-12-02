@@ -25,7 +25,7 @@ async def modal_submit(magic: discohook.Interaction, name: str, content: str):
 
 
 class Tags(discohook.Cog):
-    @discohook.Cog.command(name="tag", description="Tag system")
+    @discohook.Cog.static_command(id="1047838489737175070")
     async def tag(self, magic: discohook.Interaction):
         pass
 
